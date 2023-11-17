@@ -20,6 +20,7 @@ const getAllUser = async (req, res) => {
 }
 const getSingleUser = async (req, res) => {
     const { id } = req.params
+
     const result = await UserService.getSingleUser(id)
 
     res.send({

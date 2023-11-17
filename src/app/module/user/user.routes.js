@@ -4,8 +4,8 @@ import { UserController } from './user.controller.js';
 
 const router = express.Router();
 
-router.get('/', UserController.getAllUser)
 router.get('/:id', UserController.getSingleUser)
+router.get('/', UserController.getAllUser)
 
 router.post('/', UserController.createUser)
 

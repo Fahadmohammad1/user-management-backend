@@ -17,7 +17,7 @@ const getAllUsers = async () => {
 
 // retrieving a single user
 const getSingleUser = async (id) => {
-    const result = await User.findById({ id })
+    const result = await User.findOne({ id })
 
     return result;
 }
