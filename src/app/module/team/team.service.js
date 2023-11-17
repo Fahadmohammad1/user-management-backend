@@ -1,9 +1,23 @@
 import { Team } from "./team.model.js";
-import { User } from "./user.model.js"
 
 // creating new team
 const createTeam = async (data) => {
-    const result = await Team.create(data)
+    const findTeam = await Team.findOne({ ownerEmail: data.ownerEmail })
+
+    let result = null
+
+    if (findTeam) {
+        console.log(findTeam);
+        result = await Team.updateOne({ ownerEmail: data.ownerEmail },
+            {
+                $push: {
+                    members: data.members[0]
+                }
+            })
+    }
+    else {
+        result = await Team.create(data)
+    }
 
     return result;
 }
@@ -26,7 +40,7 @@ const deleteTeamMember = async (memberId) => {
 
 // deleting
 const deleteTeam = async (id) => {
-    const result = await User.deleteOne({ id })
+    const result = await Team.deleteOne({ id })
 
     return result;
 }

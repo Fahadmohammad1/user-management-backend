@@ -42,7 +42,7 @@ const deleteTeamMember = async (req, res) => {
     })
 }
 
-export const UserController = {
+export const TeamController = {
     createTeam,
     getTeam,
     deleteTeam,

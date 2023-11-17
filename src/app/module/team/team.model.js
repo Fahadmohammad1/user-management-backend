@@ -9,7 +9,7 @@ const TeamSchema = new Schema({
     },
     members: [
         {
-            memberId: {
+            memberEmail: {
                 type: String,
                 required: true
             },
