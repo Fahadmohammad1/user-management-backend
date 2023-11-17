@@ -10,7 +10,7 @@ const createUser = async (req, res) => {
     })
 }
 const getAllUser = async (req, res) => {
-    const result = await UserService.createUser(req.body)
+    const result = await UserService.getAllUsers()
 
     res.send({
         status: 200,
@@ -19,7 +19,8 @@ const getAllUser = async (req, res) => {
     })
 }
 const getSingleUser = async (req, res) => {
-    const result = await UserService.createUser(req.body)
+    const { id } = req.params
+    const result = await UserService.getSingleUser(id)
 
     res.send({
         status: 200,
@@ -28,7 +29,8 @@ const getSingleUser = async (req, res) => {
     })
 }
 const updateUser = async (req, res) => {
-    const result = await UserService.createUser(req.body)
+    const { id } = req.params
+    const result = await UserService.updateUser(id)
 
     res.send({
         status: 200,
@@ -38,7 +40,8 @@ const updateUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-    const result = await UserService.createUser(req.body)
+    const { id } = req.params
+    const result = await UserService.createUser(id)
 
     res.send({
         status: 200,
