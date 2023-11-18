@@ -11,6 +11,7 @@ const TeamSchema = new Schema({
         {
             memberEmail: {
                 type: String,
+                ref: 'User',
                 required: true
             },
             name: {

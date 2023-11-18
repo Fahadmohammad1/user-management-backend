@@ -10,7 +10,8 @@ const createUser = async (req, res) => {
     })
 }
 const getAllUser = async (req, res) => {
-    const result = await UserService.getAllUsers()
+
+    const result = await UserService.getAllUsers(req.query)
 
     res.send({
         status: 200,

@@ -10,7 +10,8 @@ const createTeam = async (req, res) => {
     })
 }
 const getTeam = async (req, res) => {
-    const result = await TeamService.getTeam()
+    const { id } = req.params
+    const result = await TeamService.getTeam(id)
 
     res.send({
         status: 200,

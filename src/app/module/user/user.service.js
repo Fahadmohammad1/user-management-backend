@@ -9,8 +9,36 @@ const createUser = async (userData) => {
 
 
 // retrieving all users
-const getAllUsers = async () => {
-    const result = await User.find({})
+const getAllUsers = async (
+    filterData,
+    pagination
+) => {
+
+    const aggregations = []
+
+    const { search, page = 1, limit = 10, ...filters } = filterData
+
+
+    if (search) {
+        aggregations.push({
+            $or: [
+                { first_name: { $regex: search, $options: 'i' } },
+                { last_name: { $regex: search, $options: 'i' } },
+            ]
+        })
+    }
+
+    if (Object.keys(filters).length) {
+        aggregations.push({
+            $and: Object.entries(filters).map(([field, value]) => ({
+                [field]: value
+            }))
+        })
+    }
+
+    const conditions = aggregations.length > 0 ? { $and: aggregations } : {}
+
+    const result = await User.find(conditions).skip((page - 1) * limit).limit(limit)
 
     return result;
 }

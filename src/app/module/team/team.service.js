@@ -24,8 +24,8 @@ const createTeam = async (data) => {
 
 
 // retrieving all the team members
-const getTeam = async () => {
-    const result = await Team.find({})
+const getTeam = async (id) => {
+    const result = await Team.findOne({ _id: id })
 
     return result;
 }
